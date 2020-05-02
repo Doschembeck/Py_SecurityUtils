@@ -110,9 +110,24 @@ def generatePassword(nbrcaracteres, majUtility=True, minUtility=True, specUtilit
     return "".join(password)
 
 
-def bruteForcePassWord(secretPassWord):
-    testPass = "aaaa"
+def bruteForcePassWord(secretPassWord, lenOfPass=0):
+    # Method alphabetic
+    lenOfPass = len(secretPassWord)
 
-    if (secretPassWord == testPass):
-        print("Mot de passe cracké !")
+    completeList = []
+    result = ""
 
+    for current in range(lenOfPass):
+        a = [i for i in ALPHABET_MIN]
+        for y in range(current):
+            a = [x + i for i in ALPHABET_MIN for x in a]
+
+        completeList += a
+        print(a)
+        if (secretPassWord == a): return a
+
+    return completeList
+
+result = bruteForcePassWord("v")
+
+print(result)
